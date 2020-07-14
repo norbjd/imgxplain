@@ -1,10 +1,16 @@
+# Imgxplain
+
+[![Build Status](https://travis-ci.com/norbjd/imgxplain.svg?branch=master)](https://travis-ci.com/norbjd/imgxplain)
+
+Try it here : https://norbjd.github.io/imgxplain/
+
 ![](logo.svg)
 
-# What is it ?
+## What is it ?
 
 **Imgxplain**, as its name implies, is a tool designed to explain images with an audio description and specific timed actions, such as : drawing a rectangle, a circle, focusing on a particular zone, ...
 
-# What is it for ?
+## What is it for ?
 
 **Imgxplain** can be used for :
 
