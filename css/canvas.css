@@ -1,0 +1,17 @@
+#canvases {
+  position: relative;
+}
+
+#canvases canvas {
+  position: absolute;
+  top: 0;
+  border: solid black;
+}
+
+#draw {
+  z-index: 1;
+}
+
+#preview {
+  z-index: 2;
+}
