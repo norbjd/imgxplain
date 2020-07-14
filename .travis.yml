@@ -1,0 +1,18 @@
+language: minimal
+
+services:
+  - docker
+
+branches:
+  only:
+  - master
+
+before_install:
+- make build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  keep_history: true
+  local_dir: public/
