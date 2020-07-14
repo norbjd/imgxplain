@@ -1,0 +1,813 @@
+[
+  {
+    "start": 0.44,
+    "end": 1.22,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Kopf.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 0.45,
+    "end": 1.22,
+    "data": {
+      "action": {
+        "type": "draw_circle",
+        "options": {
+          "centerX": 494,
+          "centerY": 323,
+          "radius": 265,
+          "borderSize": 10,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 2.04,
+    "end": 2.81,
+    "data": {
+      "action": {
+        "type": "draw_circle",
+        "options": {
+          "centerX": 494,
+          "centerY": 323,
+          "radius": 265,
+          "borderSize": 10,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 2.04,
+    "end": 2.81,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Kopf.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 3.4,
+    "end": 5.28,
+    "data": {
+      "action": {
+        "type": "focus_rectangle",
+        "options": {
+          "topLeftX": 186,
+          "topLeftY": 53,
+          "bottomRightX": 831,
+          "bottomRightY": 597
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 3.4,
+    "end": 5.28,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Das ist Mr. Spock, ja?",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 5.46,
+    "end": 7.06,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Mr. Spock hat",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 7.15,
+    "end": 8.89,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "zwei ohren.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 7.15,
+    "end": 13.25,
+    "data": {
+      "action": {
+        "type": "draw_rectangle",
+        "options": {
+          "topLeftX": 191,
+          "topLeftY": 182,
+          "bottomRightX": 311,
+          "bottomRightY": 409,
+          "borderSize": 2,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 7.15,
+    "end": 13.25,
+    "data": {
+      "action": {
+        "type": "draw_rectangle",
+        "options": {
+          "topLeftX": 703,
+          "topLeftY": 182,
+          "bottomRightX": 823,
+          "bottomRightY": 409,
+          "borderSize": 2,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 8.89,
+    "end": 10.81,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Ohren.\nVerstehen sie, ohren ?",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 10.82,
+    "end": 13.25,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Er hat zwei ohren.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 11.47,
+    "end": 13.26,
+    "data": {
+      "action": {
+        "type": "draw_point",
+        "options": {
+          "centerX": 254,
+          "centerY": 326,
+          "radius": 20,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 12.43,
+    "end": 13.25,
+    "data": {
+      "action": {
+        "type": "draw_point",
+        "options": {
+          "centerX": 748,
+          "centerY": 332,
+          "radius": 20,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 14.22,
+    "end": 15.37,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Augen.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 14.22,
+    "end": 18.84,
+    "data": {
+      "action": {
+        "type": "draw_circle",
+        "options": {
+          "centerX": 405,
+          "centerY": 177,
+          "radius": 50,
+          "borderSize": 2,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 14.22,
+    "end": 18.84,
+    "data": {
+      "action": {
+        "type": "draw_circle",
+        "options": {
+          "centerX": 550,
+          "centerY": 189,
+          "radius": 50,
+          "borderSize": 2,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 14.22,
+    "end": 18.84,
+    "data": {
+      "action": {
+        "type": "draw_circle",
+        "options": {
+          "centerX": 491,
+          "centerY": 109,
+          "radius": 50,
+          "borderSize": 2,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 15.92,
+    "end": 17.28,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Verstehen sie, augen ?",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 17.35,
+    "end": 18.03,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Augen.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 18.11,
+    "end": 18.85,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Wie viele augen ?",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 18.84,
+    "end": 26.9,
+    "data": {
+      "action": {
+        "type": "draw_circle",
+        "options": {
+          "centerX": 405,
+          "centerY": 177,
+          "radius": 50,
+          "borderSize": 2,
+          "color": "#ff0000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 18.86,
+    "end": 19.93,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Eins,",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 20.23,
+    "end": 26.9,
+    "data": {
+      "action": {
+        "type": "draw_circle",
+        "options": {
+          "centerX": 550,
+          "centerY": 189,
+          "radius": 50,
+          "borderSize": 2,
+          "color": "#ff0000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 20.26,
+    "end": 21.35,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "zwei,",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 22.29,
+    "end": 26.9,
+    "data": {
+      "action": {
+        "type": "draw_circle",
+        "options": {
+          "centerX": 491,
+          "centerY": 109,
+          "radius": 50,
+          "borderSize": 2,
+          "color": "#ff0000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 22.31,
+    "end": 23.73,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "drei augen.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 23.78,
+    "end": 24.96,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Drei augen.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 24.96,
+    "end": 26.87,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Ist das richtig,\ndrei augen ?",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 25.8,
+    "end": 26.89,
+    "data": {
+      "action": {
+        "type": "draw_rectangle",
+        "options": {
+          "topLeftX": 177,
+          "topLeftY": 5,
+          "bottomRightX": 256,
+          "bottomRightY": 76,
+          "borderSize": 2,
+          "color": "#ff0000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 27.27,
+    "end": 41.64,
+    "data": {
+      "action": {
+        "type": "draw_xcross",
+        "options": {
+          "centerX": 216,
+          "centerY": 38,
+          "radius": 50,
+          "lineWidth": 5,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 27.28,
+    "end": 41.64,
+    "data": {
+      "action": {
+        "type": "draw_xcross",
+        "options": {
+          "centerX": 491,
+          "centerY": 109,
+          "radius": 50,
+          "lineWidth": 5,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 27.3,
+    "end": 27.94,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Nein.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 28.8,
+    "end": 29.87,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Wir haben nur",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 30.11,
+    "end": 31.15,
+    "data": {
+      "action": {
+        "type": "draw_rectangle",
+        "options": {
+          "topLeftX": 341,
+          "topLeftY": 144,
+          "bottomRightX": 621,
+          "bottomRightY": 223,
+          "borderSize": 2,
+          "color": "#ff0000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 30.11,
+    "end": 31.15,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "zwei augen.",
+          "position": 70,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 30.11,
+    "end": 31.15,
+    "data": {
+      "action": {
+        "type": "draw_rectangle",
+        "options": {
+          "topLeftX": 38,
+          "topLeftY": 8,
+          "bottomRightX": 101,
+          "bottomRightY": 90,
+          "borderSize": 2,
+          "color": "#ff0000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 31.9,
+    "end": 32.64,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Mund,",
+          "position": 20,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 31.9,
+    "end": 34.22,
+    "data": {
+      "action": {
+        "type": "draw_rectangle",
+        "options": {
+          "topLeftX": 397,
+          "topLeftY": 435,
+          "bottomRightX": 627,
+          "bottomRightY": 526,
+          "borderSize": 2,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 33.03,
+    "end": 34.22,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "verstehen sie mund ?",
+          "position": 20,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 34.22,
+    "end": 35.24,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Und dann :",
+          "position": 20,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 35.57,
+    "end": 37.54,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Hier ist eine zigarette, ja ?",
+          "position": 20,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 36.13,
+    "end": 37.81,
+    "data": {
+      "action": {
+        "type": "draw_arrow",
+        "options": {
+          "originX": 219,
+          "originY": 443,
+          "destinationX": 250,
+          "destinationY": 542,
+          "lineWidth": 5,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 38.17,
+    "end": 39.22,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Nein !",
+          "position": 20,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 38.17,
+    "end": 41.61,
+    "data": {
+      "action": {
+        "type": "draw_xcross",
+        "options": {
+          "centerX": 259,
+          "centerY": 548,
+          "radius": 50,
+          "lineWidth": 5,
+          "color": "#000000"
+        }
+      },
+      "note": ""
+    }
+  },
+  {
+    "start": 39.54,
+    "end": 41.36,
+    "data": {
+      "action": {
+        "type": "subtitle",
+        "options": {
+          "text": "Zigaretten sind nicht gut.",
+          "position": 20,
+          "backgroundColor": "#000000",
+          "backgroundColorOpacity": 70,
+          "textColor": "#ffffff",
+          "fontSize": 40
+        }
+      },
+      "note": ""
+    }
+  }
+]

@@ -1,0 +1,442 @@
+<html>
+
+<head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/canvas.css">
+    <link rel="stylesheet" href="css/loadmodaldialog.css">
+    <link rel="stylesheet" href="css/customwavesurfer.css">
+    <link rel="stylesheet" href="css/editformhandler.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/3.3.0/wavesurfer.min.js"
+        integrity="sha512-rMsDEqn+umkLJVfp9wNBSBAuFJ2MaqFezXBG2oIQXKp4r+43hYnFWeqDvY5QCb/CLIrYU3SPlp2ElPB+PjWSQQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/3.3.0/plugin/wavesurfer.timeline.min.js"
+        integrity="sha512-OSotY24Y7Rbm2rJYfR7Y7+XcOEwtZc5M9eNYtDyZVqXzzEr8aXOUvqYvfRFCrBlxgD+Izu3HN5liX157VAtCTQ=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/3.3.0/plugin/wavesurfer.regions.min.js"
+        integrity="sha512-ToRcXQ1/NgzFV8Tb5JEKtj0zdC1AqOcmbNrLol8op0I4qHGAdSEqVx9o+bM5faPi9Ok4LqQVVa2Mehp7AUKr/A=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/3.3.0/plugin/wavesurfer.minimap.min.js"
+        integrity="sha512-fkZxTVeIEdpqPSRcRkeZ3ibio5ww06HZ1OarFQs3jE4POiOqAf+DIkY3QDDTZ47h8SHfMHahtnM/JXsfrjQWEw=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/3.3.0/plugin/wavesurfer.cursor.min.js"
+        integrity="sha512-+AzwM5m53hyAn3zAQUyLXgLRTIlMQcQKKzW9pfZUJ4bZiL9lkJSkvpnBfhlyTiyxtxouqkVtVVeNTn9nMrl2Fw=="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/6.12.3/ajv.min.js"
+        integrity="sha512-6rFxjkisQ2OC45zjILz4tvg+XMxwTef0XWtswh7U9UhTj+uRKFX+sd+pdvogrunzb3WvxWqJtZySgC8iJ20ZDg=="
+        crossorigin="anonymous"></script>
+
+    <script src="dist/bundle.js"></script>
+</head>
+
+<body>
+    <span style="font-family: 'Roboto Medium';"> </span>
+
+    <div id="load_modal_dialog">
+        <div>
+            <h2>EDITOR</h2>
+            <form role="form" name="load">
+                <div>
+                    Choose image (PNG, JPG)<span style="color: red">*</span><br>
+                    <input type="file" id="image_picker" name="image" accept="image/png, image/jpeg, image/bmp"><br>
+                    Choose audio file<span style="color: red">*</span><br>
+                    <input type="file" id="audio_file_picker" name="audio" accept="audio/*"><br>
+                    Choose actions file (JSON)<br>
+                    <input type="file" id="actions_file_picker" name="actions" accept="application/json"><br>
+                    <span style="color: red">*</span> required<br><br>
+                    <button type="button" id="load_ok" name="load_ok">OK</button>
+                    <p id="loading_text"></p>
+                </div>
+            </form>
+            <hr>
+            <div id="examples">
+                Or choose example :
+                <span>🇫🇷</span>&nbsp;/&nbsp;
+                <span>🇩🇪</span>&nbsp;/&nbsp;
+                <span>👨‍💻</span>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <div id="main">
+            <div id="menu">
+                <button id="toggle_editor_button">🖉 OPEN EDITOR</button>
+                <button id="play" data-action="play">▶️ PLAY</button>
+                &nbsp;&nbsp;<input type="image" id="cc" src="assets/images/nocc.png" />
+            </div>
+            <div id="canvases">
+                <canvas id="draw"></canvas>
+                <canvas id="preview"></canvas>
+            </div>
+        </div>
+
+        <div id="editor">
+            <div>
+                <button data-action="export" title="Export actions to JSON">📥&nbsp;&nbsp;EXPORT</button>
+                <br>
+                Create a region, or click on existing regions to edit.
+            </div>
+            <div id="wave-timeline"></div>
+            <div id="waveform"></div>
+
+            <br>Zoom on audio wave 🔎<br>
+            <input id="zoom" data-action="zoom" type="range" />
+            <br><br>
+            <form id="editform" role="form" name="edit">
+                <h3>Selected region</h3>
+                <button type="button" id="action_preview" name="action_preview">👁️&nbsp;&nbsp;PREVIEW</button>
+                <button id="save-region" name="save_region">💾&nbsp;&nbsp;SAVE</button>
+                <button type="button" id="delete-region" name="delete_region">❌&nbsp;&nbsp;DELETE</button>
+
+                <hr>
+
+                <label for="start">Start</label>&nbsp;<input id="start" name="start" type="number" min="0" step="0.01"
+                    size="6" />
+                <label for="end">End</label>&nbsp;<input id="end" name="end" type="number" min="0" step="0.01"
+                    size="6" />
+
+                <div class="note">
+                    <label for="note">Note</label>
+                    <textarea id="note" rows="1" cols="40" name="note"></textarea>
+                </div>
+
+                <hr>
+
+                <h4>Action type</h4>
+                <table id="action_table_select">
+                    <tr>
+                        <td><img src="./assets/images/actions/draw_arrow.png" /></td>
+                        <td><img src="./assets/images/actions/draw_circle.png" /></td>
+                        <td><img src="./assets/images/actions/draw_point.png" /></td>
+                        <td><img src="./assets/images/actions/draw_rectangle.png" /></td>
+                        <td><img src="./assets/images/actions/draw_xcross.png" /></td>
+                        <td><img src="./assets/images/actions/focus_rectangle.png" /></td>
+                        <td><img src="./assets/images/actions/subtitle.png" /></td>
+                        <td><img src="./assets/images/actions/zoom.png" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" id="action_draw_arrow" name="action_type" value="draw_arrow"></td>
+                        <td><input type="radio" id="action_draw_circle" name="action_type" value="draw_circle"></td>
+                        <td><input type="radio" id="action_draw_point" name="action_type" value="draw_point"></td>
+                        <td><input type="radio" id="action_draw_rectangle" name="action_type" value="draw_rectangle">
+                        </td>
+                        <td><input type="radio" id="action_draw_xcross" name="action_type" value="draw_xcross"></td>
+                        <td><input type="radio" id="action_focus_rectangle" name="action_type" value="focus_rectangle">
+                        </td>
+                        <td><input type="radio" id="action_subtitle" name="action_type" value="subtitle"></td>
+                        <td><input type="radio" id="action_zoom" name="action_type" value="zoom"></td>
+                    </tr>
+                </table>
+
+                <h4>Options</h4>
+                <div id="action">
+                    <div id="action_draw_arrow" name="action_draw_arrow">
+                        <table>
+                            <tr>
+                                <td>Origin X</td>
+                                <td>
+                                    <input type="number" id="draw_arrow_originX" name="draw_arrow_originX" min="0"
+                                        size="5" />
+                                </td>
+                                <td>Origin Y</td>
+                                <td>
+                                    <input type="number" id="draw_arrow_originY" name="draw_arrow_originY" min="0"
+                                        size="5" />
+                                </td>
+                                <td>
+                                    <label for="set_draw_arrow_origin">Click and select on image to set value → </label>
+                                    <input type="radio" name="set_draw_arrow" id="set_draw_arrow_origin" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Destination X</td>
+                                <td>
+                                    <input type="number" id="draw_arrow_destinationX" name="draw_arrow_destinationX"
+                                        min="0" size="5" />
+                                </td>
+                                <td>Destination Y</td>
+                                <td>
+                                    <input type="number" id="draw_arrow_destinationY" name="draw_arrow_destinationY"
+                                        min="0" size="5" />
+                                </td>
+                                <td>
+                                    <label for="set_draw_arrow_destination">Click and select on image to set
+                                        value → </label>
+                                    <input type="radio" name="set_draw_arrow" id="set_draw_arrow_destination" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Line width</td>
+                                <td>
+                                    <input type="number" id="draw_arrow_lineWidth" name="draw_arrow_lineWidth" min="1"
+                                        max="100" value="2" size="5" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td><input type="color" id="draw_arrow_color" name="draw_arrow_color" value="#000000" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="action_draw_circle" name="action_draw_circle">
+                        <table>
+                            <tr>
+                                <td>Center X</td>
+                                <td><input type="number" id="draw_circle_centerX" name="draw_circle_centerX" min="0"
+                                        size="5" />
+                                </td>
+                                <td>Center Y</td>
+                                <td><input type="number" id="draw_circle_centerY" name="draw_circle_centerY" min="0"
+                                        size="5" />
+                                </td>
+                                <td><label for="set_draw_circle_center">Click and select on image to set value →
+                                    </label>
+                                    <input type="radio" name="set_draw_circle" id="set_draw_circle_center" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Radius</td>
+                                <td><input type="number" id="draw_circle_radius" name="draw_circle_radius" min="1"
+                                        value="50" size="5" /></td>
+                            </tr>
+                            <tr>
+                                <td>Border size</td>
+                                <td><input type="number" id="draw_circle_borderSize" name="draw_circle_borderSize"
+                                        min="1" max="100" value="2" size="5" /></td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td><input type="color" id="draw_circle_color" name="draw_circle_color"
+                                        value="#000000" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="action_draw_point" name="action_draw_point">
+                        <table>
+                            <tr>
+                                <td>Center X</td>
+                                <td><input type="number" id="draw_point_centerX" name="draw_point_centerX" min="0"
+                                        size="5" />
+                                </td>
+                                <td>Center Y</td>
+                                <td><input type="number" id="draw_point_centerY" name="draw_point_centerY" min="0"
+                                        size="5" />
+                                </td>
+                                <td><label for="set_draw_point_center">Click and select on image to set value → </label>
+                                    <input type="radio" name="set_draw_point" id="set_draw_point_center" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Radius</td>
+                                <td><input type="number" id="draw_point_radius" name="draw_point_radius" min="1"
+                                        value="50" size="5" /></td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td><input type="color" id="draw_point_color" name="draw_point_color" value="#000000" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="action_draw_rectangle" name="action_draw_rectangle">
+                        <table>
+                            <tr>
+                                <td>Top left X</td>
+                                <td>
+                                    <input type="number" id="draw_rectangle_topLeftX" name="draw_rectangle_topLeftX"
+                                        min="0" size="5" />
+                                </td>
+                                <td>Top left Y</td>
+                                <td>
+                                    <input type="number" id="draw_rectangle_topLeftY" name="draw_rectangle_topLeftY"
+                                        min="0" size="5" />
+                                </td>
+                                <td>
+                                    <label for="set_draw_rectangle_topLeft">Click and select on image to set
+                                        value → </label>
+                                    <input type="radio" name="set_draw_rectangle" id="set_draw_rectangle_topLeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bottom right X</td>
+                                <td>
+                                    <input type="number" id="draw_rectangle_bottomRightX"
+                                        name="draw_rectangle_bottomRightX" min="0" size="5" />
+                                </td>
+                                <td>Bottom right Y</td>
+                                <td>
+                                    <input type="number" id="draw_rectangle_bottomRightY"
+                                        name="draw_rectangle_bottomRightY" min="0" size="5" />
+                                </td>
+                                <td>
+                                    <label for="set_draw_rectangle_bottomRight">Click and select on image to set
+                                        value → </label>
+                                    <input type="radio" name="set_draw_rectangle" id="set_draw_rectangle_bottomRight" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Border size</td>
+                                <td>
+                                    <input type="number" id="draw_rectangle_borderSize" name="draw_rectangle_borderSize"
+                                        min="1" max="100" value="2" size="5" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td><input type="color" id="draw_rectangle_color" name="draw_rectangle_color"
+                                        value="#000000" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="action_draw_xcross" name="action_draw_xcross">
+                        <table>
+                            <tr>
+                                <td>Center X</td>
+                                <td><input type="number" id="draw_xcross_centerX" name="draw_xcross_centerX" min="0"
+                                        size="5" />
+                                </td>
+                                <td>Center Y</td>
+                                <td><input type="number" id="draw_xcross_centerY" name="draw_xcross_centerY" min="0"
+                                        size="5" />
+                                </td>
+                                <td><label for="set_draw_xcross_center">Click and select on image to set value →
+                                    </label>
+                                </td>
+                                <td><input type="radio" name="set_draw_xcross" id="set_draw_xcross_center" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Radius</td>
+                                <td><input type="number" id="draw_xcross_radius" name="draw_xcross_radius" min="1"
+                                        value="50" size="5" /></td>
+                            </tr>
+                            <tr>
+                                <td>Line width</td>
+                                <td><input type="number" id="draw_xcross_lineWidth" name="draw_xcross_lineWidth" min="1"
+                                        max="100" value="2" size="5" /></td>
+                            </tr>
+                            <tr>
+                                <td>Color</td>
+                                <td><input type="color" id="draw_xcross_color" name="draw_xcross_color"
+                                        value="#000000" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="action_zoom" name="action_zoom">
+                        <table>
+                            <tr>
+                                <td>Top left X</td>
+                                <td><input type="number" id="zoom_topLeftX" name="zoom_topLeftX" min="0" size="5" />
+                                </td>
+                                <td>Top left Y</td>
+                                <td><input type="number" id="zoom_topLeftY" name="zoom_topLeftY" min="0" size="5" />
+                                </td>
+                                <td><label for="set_zoom_topLeft">Click and select on image to set value → </label></td>
+                                <td><input type="radio" name="set_zoom" id="set_zoom_topLeft" /></td>
+                            </tr>
+                            <tr>
+                                <td>Bottom right X</td>
+                                <td><input type="number" id="zoom_bottomRightX" name="zoom_bottomRightX" min="0"
+                                        size="5" />
+                                </td>
+                                <td>Bottom right Y</td>
+                                <td><input type="number" id="zoom_bottomRightY" name="zoom_bottomRightY" min="0"
+                                        size="5" />
+                                </td>
+                                <td><label for="set_zoom_bottomRight">Click and select on image to set value → </label>
+                                </td>
+                                <td><input type="radio" name="set_zoom" id="set_zoom_bottomRight" /></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="action_subtitle" name="action_subtitle">
+                        <table>
+                            <tr>
+                                <td>Text</td>
+                                <td><textarea rows="2" cols="40" id="subtitle_text" name="subtitle_text"></textarea>
+                                </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td>Vertical position</td>
+                                <td>🔼<input type="range" id="subtitle_position" name="subtitle_position" min="0"
+                                        max="100" value="70" step="10" />🔽</td>
+                            </tr>
+                            <tr>
+                                <td>Background color</td>
+                                <td><input type="color" id="subtitle_backgroundColor" name="subtitle_backgroundColor"
+                                        value="#000000" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Background opacity</td>
+                                <td><input type="range" id="subtitle_backgroundColorOpacity"
+                                        name="subtitle_backgroundColorOpacity" min="0" max="100" value="100" step="1" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Text color</td>
+                                <td><input type="color" id="subtitle_textColor" name="subtitle_textColor"
+                                        value="#FFFFFF" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Font size</td>
+                                <td><input type="number" id="subtitle_fontSize" name="subtitle_fontSize" min="1"
+                                        max="100" step="1" size="3" value="40" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div id="action_focus_rectangle" name="action_focus_rectangle">
+                        <table>
+                            <tr>
+                                <td>Top left X</td>
+                                <td><input type="number" id="focus_rectangle_topLeftX" name="focus_rectangle_topLeftX"
+                                        min="0" size="5" /></td>
+                                <td>Top left Y</td>
+                                <td><input type="number" id="focus_rectangle_topLeftY" name="focus_rectangle_topLeftY"
+                                        min="0" size="5" /></td>
+                                <td><label for="set_focus_rectangle_topLeft">Click and select on image to set value →
+                                    </label></td>
+                                <td><input type="radio" name="set_focus_rectangle" id="set_focus_rectangle_topLeft" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Bottom right X</td>
+                                <td><input type="number" id="focus_rectangle_bottomRightX"
+                                        name="focus_rectangle_bottomRightX" min="0" size="5" /></td>
+                                <td>Bottom right Y</td>
+                                <td><input type="number" id="focus_rectangle_bottomRightY"
+                                        name="focus_rectangle_bottomRightY" min="0" size="5" /></td>
+                                <td><label for="set_focus_rectangle_bottomRight">Click and select on image to set value
+                                        → </label></td>
+                                <td><input type="radio" name="set_focus_rectangle"
+                                        id="set_focus_rectangle_bottomRight" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

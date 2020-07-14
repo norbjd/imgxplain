@@ -1,0 +1,108 @@
+@font-face {
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/oswald-v31-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/open-sans-v17-latin-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Roboto Medium";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../assets/fonts/roboto-medium.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
+    U+FEFF, U+FFFD;
+}
+
+body {
+  background-color: #9db3cf;
+}
+
+* {
+  font-family: "Open Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Oswald, sans-serif;
+}
+
+button {
+  vertical-align: middle;
+  height: 32px;
+  font-family: "Roboto Medium", sans-serif;
+  padding: 0.3em 1.4em;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: black;
+  color: white;
+}
+
+#menu > button {
+  vertical-align: top;
+}
+
+#toggle_editor_button {
+  background-color: black;
+}
+
+#play {
+  background-color: #009e47;
+}
+
+#editor {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #b2c9df;
+  overflow-x: hidden;
+  padding-top: 10px;
+  transition: width 400ms;
+}
+
+#zoom {
+  width: 100%;
+}
+
+#editform {
+  height: 0;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #b2c9df;
+  border-top: 1px solid black;
+  overflow-x: hidden;
+  overflow-y: auto;
+  transition: height 400ms;
+}
+
+#save-region {
+  background-color: #009e47;
+}
+
+#delete-region {
+  background-color: tomato;
+}
+
+.note * {
+  vertical-align: middle;
+}
+
+.action div {
+  display: none;
+}

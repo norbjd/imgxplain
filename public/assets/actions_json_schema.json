@@ -1,0 +1,471 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "Actions",
+    "type": "array",
+    "items": {
+        "$ref": "#/definitions/action"
+    },
+    "definitions": {
+        "action": {
+            "type": "object",
+            "required": [
+                "start",
+                "end",
+                "data"
+            ],
+            "additionalItems": false,
+            "properties": {
+                "start": {
+                    "type": "number",
+                    "title": "Start time",
+                    "description": "Action start time",
+                    "examples": [
+                        0.0,
+                        0.12,
+                        3.45,
+                        6
+                    ]
+                },
+                "end": {
+                    "type": "number",
+                    "title": "End time",
+                    "description": "Action end time",
+                    "examples": [
+                        0.5,
+                        0.12,
+                        3.45,
+                        6
+                    ]
+                },
+                "data": {
+                    "type": "object",
+                    "required": [
+                        "action"
+                    ],
+                    "properties": {
+                        "action": {
+                            "type": "object",
+                            "required": [
+                                "type",
+                                "options"
+                            ],
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "description": "Action type",
+                                    "enum": [
+                                        "draw_arrow",
+                                        "draw_circle",
+                                        "draw_rectangle",
+                                        "draw_point",
+                                        "draw_xcross",
+                                        "focus_rectangle",
+                                        "subtitle",
+                                        "zoom"
+                                    ]
+                                }
+                            },
+                            "allOf": [
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "draw_arrow"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "options": {
+                                                "$ref": "#/definitions/drawArrowOptions"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "draw_circle"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "options": {
+                                                "$ref": "#/definitions/drawCircleOptions"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "draw_point"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "options": {
+                                                "$ref": "#/definitions/drawPointOptions"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "draw_rectangle"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "options": {
+                                                "$ref": "#/definitions/drawRectangleOptions"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "draw_xcross"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "options": {
+                                                "$ref": "#/definitions/drawXCrossOptions"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "focus_rectangle"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "options": {
+                                                "$ref": "#/definitions/focusRectangleOptions"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "subtitle"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "options": {
+                                                "$ref": "#/definitions/subtitleOptions"
+                                            }
+                                        }
+                                    }
+                                },
+                                {
+                                    "if": {
+                                        "properties": {
+                                            "type": {
+                                                "const": "zoom"
+                                            }
+                                        }
+                                    },
+                                    "then": {
+                                        "properties": {
+                                            "options": {
+                                                "$ref": "#/definitions/zoomOptions"
+                                            }
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "note": {
+                        "type": "string",
+                        "title": "Note",
+                        "description": "Note or comment",
+                        "examples": [
+                            "Something useful",
+                            "This is a comment"
+                        ]
+                    }
+                }
+            }
+        },
+        "drawArrowOptions": {
+            "type": "object",
+            "required": [
+                "originX",
+                "originY",
+                "destinationX",
+                "destinationY",
+                "lineWidth",
+                "color"
+            ],
+            "properties": {
+                "originX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "originY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "destinationX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "destinationY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "lineWidth": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                }
+            }
+        },
+        "drawCircleOptions": {
+            "type": "object",
+            "required": [
+                "centerX",
+                "centerY",
+                "radius",
+                "borderSize",
+                "color"
+            ],
+            "properties": {
+                "centerX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "centerY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "radius": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "borderSize": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                }
+            }
+        },
+        "drawPointOptions": {
+            "type": "object",
+            "required": [
+                "centerX",
+                "centerY",
+                "radius",
+                "color"
+            ],
+            "properties": {
+                "centerX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "centerY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "radius": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                }
+            }
+        },
+        "drawRectangleOptions": {
+            "type": "object",
+            "required": [
+                "topLeftX",
+                "topLeftY",
+                "bottomRightX",
+                "bottomRightY",
+                "borderSize",
+                "color"
+            ],
+            "properties": {
+                "topLeftX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "topLeftY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "bottomRightX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "bottomRightY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "borderSize": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                }
+            }
+        },
+        "drawXCrossOptions": {
+            "type": "object",
+            "required": [
+                "centerX",
+                "centerY",
+                "radius",
+                "lineWidth",
+                "color"
+            ],
+            "properties": {
+                "centerX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "centerY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "radius": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "lineWidth": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "color": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                }
+            }
+        },
+        "focusRectangleOptions": {
+            "type": "object",
+            "required": [
+                "topLeftX",
+                "topLeftY",
+                "bottomRightX",
+                "bottomRightY"
+            ],
+            "properties": {
+                "topLeftX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "topLeftY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "bottomRightX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "bottomRightY": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        },
+        "subtitleOptions": {
+            "type": "object",
+            "required": [
+                "text",
+                "position",
+                "backgroundColor",
+                "backgroundColorOpacity",
+                "textColor",
+                "fontSize"
+            ],
+            "properties": {
+                "text": {
+                    "type": "string"
+                },
+                "position": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                },
+                "backgroundColor": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "backgroundColorOpacity": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 255
+                },
+                "textColor": {
+                    "type": "string",
+                    "pattern": "^#[0-9a-fA-F]{6}$"
+                },
+                "fontSize": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                }
+            }
+        },
+        "zoomOptions": {
+            "type": "object",
+            "required": [
+                "topLeftX",
+                "topLeftY",
+                "bottomRightX",
+                "bottomRightY"
+            ],
+            "properties": {
+                "topLeftX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "topLeftY": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "bottomRightX": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "bottomRightY": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        }
+    }
+}
