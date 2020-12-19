@@ -16,8 +16,14 @@ import { DOMUtils } from "./utils/domUtils";
 import { DrawPointOptions, DrawPoint } from "./actions/drawPoint";
 import { DrawArrowOptions, DrawArrow } from "./actions/drawArrow";
 
+import WaveSurfer from "wavesurfer.js";
+import RegionsPlugin from "wavesurfer.js/src/plugin/regions";
+import MinimapPlugin from "wavesurfer.js/src/plugin/minimap";
+
+import Ajv from "ajv";
+
 class CustomWaveSurfer {
-  wavesurfer;
+  wavesurfer: WaveSurfer;
   canvas: Canvas;
   editFormHandler: EditFormHandler;
 
@@ -35,7 +41,6 @@ class CustomWaveSurfer {
     this.canvas = canvas;
     this.editFormHandler = editFormHandler;
 
-    // @ts-ignore
     this.wavesurfer = WaveSurfer.create({
       container: DOMUtils.getWaveformDiv(),
       height: 200,
@@ -46,20 +51,12 @@ class CustomWaveSurfer {
       splitChannels: false,
       backend: "MediaElement",
       plugins: [
-        // @ts-ignore
-        WaveSurfer.regions.create(),
-        // @ts-ignore
-        WaveSurfer.minimap.create({
+        RegionsPlugin.create(),
+        MinimapPlugin.create({
           height: 30,
           waveColor: "#ddd",
           progressColor: "#999",
         }),
-        // @ts-ignore
-        WaveSurfer.timeline.create({
-          container: "#wave-timeline",
-        }),
-        // @ts-ignore
-        WaveSurfer.cursor.create(),
       ],
     });
 
@@ -342,7 +339,6 @@ class CustomWaveSurfer {
         "./assets/actions_json_schema.json"
       ).then((schema) => {
         const data = JSON.parse(localStorage.regions);
-        // @ts-ignore
         const ajv = new Ajv();
         const jsonSchema = JSON.parse(schema);
         const validJson = ajv
