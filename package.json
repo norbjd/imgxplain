@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Imgxplain is a tool designed to explain images with an audio description and timed actions",
   "dependencies": {
-    "ajv": "7.0.1",
+    "ajv": "6.12.6",
     "wavesurfer.js": "3.3.0"
   },
   "devDependencies": {
