@@ -12,7 +12,6 @@ COPY    package-lock.json .
 RUN     npm install --verbose
 
 # config
-COPY    scripts/ scripts/
 COPY    tsconfig.json .
 COPY    .eslintrc.json .
 COPY    jest.config.json .
