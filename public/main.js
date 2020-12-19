@@ -9,15 +9,15 @@ function createWindow() {
     },
   });
 
-  Menu.setApplicationMenu(Menu.buildFromTemplate([
-    {
-      label : "File",
-        submenu : [
-          { role : "quit" },
-        ]
-    }
-  ]));
-  
+  Menu.setApplicationMenu(
+    Menu.buildFromTemplate([
+      {
+        label: "File",
+        submenu: [{ role: "quit" }],
+      },
+    ])
+  );
+
   win.loadFile("public/index.html");
 }
 
