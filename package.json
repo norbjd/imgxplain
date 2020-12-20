@@ -2,6 +2,7 @@
   "name": "imgxplain",
   "version": "0.1.0",
   "description": "Imgxplain is a tool designed to explain images with an audio description and timed actions",
+  "main": "public/main.js",
   "dependencies": {
     "ajv": "6.12.6",
     "wavesurfer.js": "3.3.0"
@@ -12,6 +13,7 @@
     "@typescript-eslint/eslint-plugin": "^3.0.0",
     "@typescript-eslint/parser": "^3.0.0",
     "canvas": "^2.6.1",
+    "electron": "11.1.0",
     "eslint": "^7.1.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
@@ -31,9 +33,10 @@
     "postcompile": "webpack public/build/*.js -o public/dist/bundle.js && npm run clean",
     "lint": "npx eslint **/*.ts",
     "lint-fix": "npx eslint --fix **/*.ts",
-    "format": "npx prettier --write **/*.ts .eslintrc.json *.json public/css/**/*",
-    "format-check": "npx prettier --check **/*.ts .eslintrc.json .*.json public/css/**/*",
-    "test": "jest"
+    "format": "npx prettier --write **/*.ts .eslintrc.json *.json public/css/**/* public/*.js",
+    "format-check": "npx prettier --check **/*.ts .eslintrc.json .*.json public/css/**/* public/*.js",
+    "test": "jest",
+    "start": "electron ."
   },
   "author": "norbjd",
   "license": "GPL-3.0-only"
