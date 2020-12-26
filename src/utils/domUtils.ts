@@ -19,6 +19,10 @@ class DOMUtils {
     );
   }
 
+  static getTranscriptDiv(): HTMLDivElement {
+    return document.querySelector("#transcript") as HTMLDivElement;
+  }
+
   static getMainCanvas(): HTMLCanvasElement {
     return document.querySelector("#draw") as HTMLCanvasElement;
   }
@@ -84,6 +88,10 @@ class DOMUtils {
 
   static getPlayPauseButton(): HTMLButtonElement {
     return document.querySelector("[data-action='play']") as HTMLButtonElement;
+  }
+
+  static getTranscriptButton(): HTMLInputElement {
+    return document.querySelector("#transcript_button");
   }
 
   static getCCButton(): HTMLInputElement {

@@ -353,6 +353,8 @@ class EditFormHandler {
         },
       });
 
+      this.updateTranscript(JSON.parse(localStorage.regions));
+
       this.editForm.reset();
     });
 
@@ -530,6 +532,44 @@ class EditFormHandler {
             break;
           default:
             throw new Error("Invalid action : [" + divId + "]");
+        }
+      }
+    }
+  }
+
+  updateTranscript = (sortedRegions: any[]): void => {
+    const transcriptDiv = DOMUtils.getTranscriptDiv();
+    transcriptDiv.innerHTML = "";
+
+    for (let i = 0; i < sortedRegions.length; i++) {
+      const regionAction = sortedRegions[i].data.action;
+      if (regionAction != undefined && regionAction.type == "subtitle") {
+        const element = document.createElement("span");
+        element.setAttribute("id", "subtitle_" + i);
+        element.innerText =
+          sortedRegions[i].data.action.options.text.replace("\n", " ") +
+          " ";
+        transcriptDiv.appendChild(element);
+      }
+    }
+  };
+
+  highlightTranscriptPart(sortedRegions: any[], currentTime: number) {
+    const transcriptDiv = DOMUtils.getTranscriptDiv();
+
+    for (let i = 0; i < sortedRegions.length; i++) {
+      const regionAction = sortedRegions[i].data.action;
+      if (regionAction != undefined && regionAction.type == "subtitle") {
+        const span = transcriptDiv.querySelector(
+          "#subtitle_" + i
+        ) as HTMLSpanElement;
+        if (
+          currentTime >= sortedRegions[i].start &&
+          currentTime <= sortedRegions[i].end
+        ) {
+          span.style.background = "lime";
+        } else {
+          span.style.background = "";
         }
       }
     }
