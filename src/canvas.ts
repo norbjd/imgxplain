@@ -86,6 +86,10 @@ class Canvas {
     this.previewCanvas.width = canvasWidth;
     this.previewCanvas.height = canvasHeight;
     this.previewCanvas.style.display = "none";
+
+    // TODO : move somewhere else
+    // -20 : padding
+    DOMUtils.getTranscriptDiv().style.width = "" + (canvasWidth + 5 - 20);
   }
 
   renderFullImage(): void {

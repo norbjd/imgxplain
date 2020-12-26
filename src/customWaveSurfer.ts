@@ -76,10 +76,12 @@ class CustomWaveSurfer {
       this.saveRegions();
       this.wavesurfer.seekAndCenter(0);
       this.initZoomSlider();
+      this.updateTranscript();
     });
 
     this.initPlayButton();
     this.initExportButton();
+    this.initTranscriptButton();
 
     this.editFormHandler.editForm
       .getRegionStartInput()
@@ -114,8 +116,10 @@ class CustomWaveSurfer {
 
     this.wavesurfer.on("region-update-end", this.saveRegions);
     this.wavesurfer.on("region-update-end", this.redrawAllRegionsSuperposed);
+    this.wavesurfer.on("region-update-end", this.updateTranscript);
 
     this.wavesurfer.on("region-removed", this.saveRegions);
+    this.wavesurfer.on("region-removed", this.updateTranscript);
 
     this.wavesurfer.on("region-play", function (region) {
       region.once("out", function () {
@@ -170,6 +174,7 @@ class CustomWaveSurfer {
       }
 
       this.canvas.executeActions(this.currentActions);
+      this.highlightTranscriptPart(currentTime);
     });
 
     this.wavesurfer.on("seek", () => {
@@ -225,6 +230,9 @@ class CustomWaveSurfer {
       }
 
       this.canvas.executeActions(this.currentActions);
+      if (currentTime != 0) {
+        this.highlightTranscriptPart(currentTime);
+      }
     });
 
     this.wavesurfer.on("finish", () => {
@@ -315,6 +323,17 @@ class CustomWaveSurfer {
     }
   };
 
+  updateTranscript = (): void => {
+    this.editFormHandler.updateTranscript(this.sortedRegions);
+  };
+
+  highlightTranscriptPart(currentTime: number) {
+    this.editFormHandler.highlightTranscriptPart(
+      this.sortedRegions,
+      currentTime
+    );
+  }
+
   initZoomSlider(): void {
     const slider = DOMUtils.getWaveformZoomSlider();
     slider.value = this.wavesurfer.params.minPxPerSec;
@@ -331,6 +350,25 @@ class CustomWaveSurfer {
     DOMUtils.getPlayPauseButton().addEventListener("click", () =>
       this.wavesurfer.playPause()
     );
+  }
+
+  initTranscriptButton(): void {
+    const heightPercent = "15%";
+    DOMUtils.getTranscriptButton().addEventListener("click", () => {
+      const transcriptDiv = DOMUtils.getTranscriptDiv();
+      const height = transcriptDiv.style.height;
+      if (height == heightPercent) {
+        transcriptDiv.style.height = "0px";
+        transcriptDiv.style.border = "";
+        transcriptDiv.style.marginBottom = "0px";
+        transcriptDiv.style.padding = "0px";
+      } else {
+        transcriptDiv.style.height = heightPercent;
+        transcriptDiv.style.border = "1px solid";
+        transcriptDiv.style.marginBottom = "10px";
+        transcriptDiv.style.padding = "10px";
+      }
+    });
   }
 
   initExportButton(): void {
