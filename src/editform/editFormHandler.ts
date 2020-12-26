@@ -42,11 +42,11 @@ class EditFormHandler {
 
   getFormInputElement(name: string): HTMLInputElement {
     return this.editForm.getFormInputElement(name);
-  };
+  }
 
   getFormButtonElement(name: string): HTMLButtonElement {
     return this.editForm.getFormButtonElement(name);
-  };
+  }
 
   getActions(): RadioNodeList {
     return this.editForm.getActions();
@@ -340,9 +340,7 @@ class EditFormHandler {
 
       const actionType = this.getFormInputElement("action_type").value;
 
-      let action: Action<ActionOptions>;
-
-      action = this.getActionFromActionType(actionType);
+      const action: Action<ActionOptions> = this.getActionFromActionType(actionType);
 
       region.update({
         start: this.editForm.getRegionStartInput().value,
@@ -366,7 +364,7 @@ class EditFormHandler {
 
   displayActionDiv(actionType: string): void {
     this.currentActionDiv = this.editForm.displayAndReturnActionDiv(actionType);
-  };
+  }
 
   resetActionDiv(): void {
     this.currentActionDiv = undefined;
@@ -392,7 +390,7 @@ class EditFormHandler {
     setTimeout(function () {
       actionPreviewButton.disabled = false;
     }, timeInMs);
-  };
+  }
 
   clickOnCanvas(e: MouseEvent): void {
     const cursorPosition = this.canvas.getCursorPositionOnCanvas(e);
@@ -403,7 +401,7 @@ class EditFormHandler {
       const divId = this.currentActionDiv.id;
       const actionName = divId.substr(7); // remove action_
 
-      let setRadioButtonChecked: HTMLInputElement = document
+      const setRadioButtonChecked: HTMLInputElement = document
         .querySelector("div#" + divId + " input[type=radio]:checked");
 
       if (setRadioButtonChecked != undefined) {
@@ -554,7 +552,7 @@ class EditFormHandler {
     }
   };
 
-  highlightTranscriptPart(sortedRegions: any[], currentTime: number) {
+  highlightTranscriptPart(sortedRegions: any[], currentTime: number): void {
     const transcriptDiv = DOMUtils.getTranscriptDiv();
 
     for (let i = 0; i < sortedRegions.length; i++) {

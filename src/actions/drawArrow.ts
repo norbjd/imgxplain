@@ -25,7 +25,7 @@ class DrawArrowOptions extends ActionOptions {
       super(canvas, "draw_arrow", options);
     }
   
-    do(context: CanvasRenderingContext2D) {
+    do(context: CanvasRenderingContext2D): void {
       const lineCanvasOrigin = this.canvas.getPointProjectionOnCanvas(
         this.options.originX,
         this.options.originY

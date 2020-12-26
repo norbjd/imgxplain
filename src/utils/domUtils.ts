@@ -112,7 +112,7 @@ class DOMUtils {
     return document.getElementById("toggle_editor_button") as HTMLButtonElement;
   }
 
-  static openEditor() {
+  static openEditor(): void {
     this.getToggleEditorButton().textContent = "🖉 Close Editor";
     DOMUtils.getEditorDiv().style.width = "40%";
     DOMUtils.getEditorDiv().style.borderLeft = "1px solid black";
@@ -120,7 +120,7 @@ class DOMUtils {
     DOMUtils.getEditorDiv().style.paddingRight = "10px";
   }
 
-  static closeEditor() {
+  static closeEditor(): void {
     this.getToggleEditorButton().textContent = "🖉 Open Editor";
     DOMUtils.getEditorDiv().style.width = "0";
     DOMUtils.getEditorDiv().style.borderLeft = "";

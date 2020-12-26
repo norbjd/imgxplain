@@ -6,7 +6,7 @@ class FocusRectangle extends Action<FocusRectangleOptions> {
       super(canvas, "focus_rectangle", options);
     }
   
-    do(context: CanvasRenderingContext2D) {
+    do(context: CanvasRenderingContext2D): void {
       const rectCanvasTopLeft = this.canvas.getPointProjectionOnCanvas(
         this.options.topLeftX,
         this.options.topLeftY

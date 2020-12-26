@@ -35,7 +35,7 @@ class Subtitle extends Action<SubtitleOptions> {
     super(canvas, "subtitle", options);
   }
 
-  do(context: CanvasRenderingContext2D) {
+  do(context: CanvasRenderingContext2D): void {
     if (this.canvas.ccEnabled) {
       const widthAndHeight = this.canvas.getWidthAndHeight();
       const textVerticalCenter = widthAndHeight.width / 2;

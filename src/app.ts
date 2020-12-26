@@ -45,7 +45,7 @@ class App {
     }
   }
 
-  init(loadInput: LoadInput) {
+  init(loadInput: LoadInput): void {
     const imageData = loadInput.imageData;
     const audioBlob = loadInput.audioBlob;
     const jsonActions = loadInput.jsonActions;

@@ -53,8 +53,8 @@ class LoadFormHandler implements LoadHandler {
             const ajv = new Ajv();
             const jsonSchema = JSON.parse(schema);
             const validJson = ajv
-              .addSchema(jsonSchema, 'schema')
-              .validate('schema', data);
+              .addSchema(jsonSchema, "schema")
+              .validate("schema", data);
             if (!validJson) {
               throw new LoadingError("Invalid JSON : " + JSON.stringify(ajv.errors, null, 2));
             }

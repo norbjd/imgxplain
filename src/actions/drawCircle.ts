@@ -29,7 +29,7 @@ class DrawCircleOptions extends ActionOptions {
       super(canvas, "draw_circle", options);
     }
   
-    do(context: CanvasRenderingContext2D) {
+    do(context: CanvasRenderingContext2D): void {
       const circleCanvasCenter = this.canvas.getPointProjectionOnCanvas(
         this.options.centerX,
         this.options.centerY

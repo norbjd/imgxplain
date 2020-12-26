@@ -26,7 +26,7 @@ class DrawPointOptions extends ActionOptions {
       super(canvas, "draw_point", options);
     }
   
-    do(context: CanvasRenderingContext2D) {
+    do(context: CanvasRenderingContext2D): void {
       const pointCanvasCenter = this.canvas.getPointProjectionOnCanvas(
         this.options.centerX,
         this.options.centerY

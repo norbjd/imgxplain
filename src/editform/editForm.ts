@@ -5,11 +5,11 @@ class EditForm {
     this.editForm = editForm;
   }
 
-  setOnSubmit(submit: (ev: Event) => void) {
+  setOnSubmit(submit: (ev: Event) => void): void {
     this.editForm.onsubmit = submit;
   }
 
-  setOnReset(reset: (ev: Event) => void) {
+  setOnReset(reset: (ev: Event) => void): void {
     this.editForm.onreset = reset;
   }
 
@@ -82,7 +82,7 @@ class EditForm {
     this.editForm.style.height = "0";
   }
 
-  reset() {
+  reset(): void {
     this.editForm.reset();
   }
 }

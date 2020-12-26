@@ -23,7 +23,7 @@ class DrawXCrossOptions extends ActionOptions {
       super(canvas, "draw_xcross", options);
     }
   
-    do(context: CanvasRenderingContext2D) {
+    do(context: CanvasRenderingContext2D): void {
       const xCrossCanvasCenter = this.canvas.getPointProjectionOnCanvas(
         this.options.centerX,
         this.options.centerY

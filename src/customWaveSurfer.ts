@@ -327,7 +327,7 @@ class CustomWaveSurfer {
     this.editFormHandler.updateTranscript(this.sortedRegions);
   };
 
-  highlightTranscriptPart(currentTime: number) {
+  highlightTranscriptPart(currentTime: number): void {
     this.editFormHandler.highlightTranscriptPart(
       this.sortedRegions,
       currentTime

@@ -26,7 +26,7 @@ class ZoomOptions extends ActionOptions {
       super(canvas, "zoom", options);
     }
   
-    do(context: CanvasRenderingContext2D) {
+    do(context: CanvasRenderingContext2D): void {
       this.canvas.render(
         this.options.topLeftX,
         this.options.topLeftY,
