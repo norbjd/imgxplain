@@ -64,7 +64,7 @@ class Subtitle extends Action<SubtitleOptions> {
       let textHorizontalCenter = Math.max(
         Math.min(
           (widthAndHeight.height * this.options.position) / 100 -
-          linesBoxesHorizontalCenter / 2,
+            linesBoxesHorizontalCenter / 2,
           widthAndHeight.height - linesBoxesHorizontalCenter
         ),
         0
@@ -79,7 +79,9 @@ class Subtitle extends Action<SubtitleOptions> {
           textMetrics.actualBoundingBoxDescent +
           2 * paddingHeight;
         const topLeftX =
-          textVerticalCenter - Math.abs(textMetrics.actualBoundingBoxLeft) - paddingWidth;
+          textVerticalCenter -
+          Math.abs(textMetrics.actualBoundingBoxLeft) -
+          paddingWidth;
 
         textHorizontalCenter += height;
         const topLeftY =
@@ -106,7 +108,4 @@ class Subtitle extends Action<SubtitleOptions> {
   }
 }
 
-export {
-  Subtitle,
-  SubtitleOptions,
-};
+export { Subtitle, SubtitleOptions };

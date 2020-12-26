@@ -6,7 +6,9 @@ class LoadForm {
   }
 
   getExamplesSpans(): HTMLCollectionOf<HTMLSpanElement> {
-    return (document.querySelector("#examples") as HTMLDivElement).getElementsByTagName("span");
+    return (document.querySelector(
+      "#examples"
+    ) as HTMLDivElement).getElementsByTagName("span");
   }
 
   getOkButton(): HTMLButtonElement {

@@ -15,13 +15,15 @@ class Action<T extends ActionOptions> {
     throw new Error("Not implemented");
   }
 
-  execute(): void { this.do(this.canvas.mainContext); }
-  preview(): void { this.do(this.canvas.previewContext); }
+  execute(): void {
+    this.do(this.canvas.mainContext);
+  }
+
+  preview(): void {
+    this.do(this.canvas.previewContext);
+  }
 }
 
 class ActionOptions {}
 
-export {
-  Action,
-  ActionOptions,
-};
+export { Action, ActionOptions };

@@ -96,7 +96,7 @@ class EditFormHandler {
             Number(this.getFormInputElement("draw_point_centerX").value),
             Number(this.getFormInputElement("draw_point_centerY").value),
             Number(this.getFormInputElement("draw_point_radius").value),
-            this.getFormInputElement("draw_point_color").value,
+            this.getFormInputElement("draw_point_color").value
           )
         );
         break;
@@ -104,21 +104,15 @@ class EditFormHandler {
         action = new DrawRectangle(
           this.canvas,
           new DrawRectangleOptions(
-            Number(
-              this.getFormInputElement("draw_rectangle_topLeftX").value
-            ),
-            Number(
-              this.getFormInputElement("draw_rectangle_topLeftY").value
-            ),
+            Number(this.getFormInputElement("draw_rectangle_topLeftX").value),
+            Number(this.getFormInputElement("draw_rectangle_topLeftY").value),
             Number(
               this.getFormInputElement("draw_rectangle_bottomRightX").value
             ),
             Number(
               this.getFormInputElement("draw_rectangle_bottomRightY").value
             ),
-            Number(
-              this.getFormInputElement("draw_rectangle_borderSize").value
-            ),
+            Number(this.getFormInputElement("draw_rectangle_borderSize").value),
             this.getFormInputElement("draw_rectangle_color").value
           )
         );
@@ -154,8 +148,7 @@ class EditFormHandler {
             Number(this.getFormInputElement("subtitle_position").value),
             this.getFormInputElement("subtitle_backgroundColor").value,
             Number(
-              this.getFormInputElement("subtitle_backgroundColorOpacity")
-                .value
+              this.getFormInputElement("subtitle_backgroundColorOpacity").value
             ),
             this.getFormInputElement("subtitle_textColor").value,
             Number(this.getFormInputElement("subtitle_fontSize").value),
@@ -167,12 +160,8 @@ class EditFormHandler {
         action = new FocusRectangle(
           this.canvas,
           new FocusRectangleOptions(
-            Number(
-              this.getFormInputElement("focus_rectangle_topLeftX").value
-            ),
-            Number(
-              this.getFormInputElement("focus_rectangle_topLeftY").value
-            ),
+            Number(this.getFormInputElement("focus_rectangle_topLeftX").value),
+            Number(this.getFormInputElement("focus_rectangle_topLeftY").value),
             Number(
               this.getFormInputElement("focus_rectangle_bottomRightX").value
             ),
@@ -327,7 +316,7 @@ class EditFormHandler {
     }
     //#endregion
 
-    this.getActions().forEach(e => {
+    this.getActions().forEach((e) => {
       if ((e as HTMLInputElement).checked) {
         e.dispatchEvent(new Event("click"));
       }
@@ -340,7 +329,9 @@ class EditFormHandler {
 
       const actionType = this.getFormInputElement("action_type").value;
 
-      const action: Action<ActionOptions> = this.getActionFromActionType(actionType);
+      const action: Action<ActionOptions> = this.getActionFromActionType(
+        actionType
+      );
 
       region.update({
         start: this.editForm.getRegionStartInput().value,
@@ -401,8 +392,9 @@ class EditFormHandler {
       const divId = this.currentActionDiv.id;
       const actionName = divId.substr(7); // remove action_
 
-      const setRadioButtonChecked: HTMLInputElement = document
-        .querySelector("div#" + divId + " input[type=radio]:checked");
+      const setRadioButtonChecked: HTMLInputElement = document.querySelector(
+        "div#" + divId + " input[type=radio]:checked"
+      );
 
       if (setRadioButtonChecked != undefined) {
         switch (divId) {
@@ -416,7 +408,10 @@ class EditFormHandler {
                 actionName + "_originY",
                 cursorY
               );
-            } else if (setRadioButtonChecked.id == "set_" + actionName + "_destination") {
+            } else if (
+              setRadioButtonChecked.id ==
+              "set_" + actionName + "_destination"
+            ) {
               DOMUtils.setHTMLInputElementValue(
                 actionName + "_destinationX",
                 cursorX
@@ -461,7 +456,10 @@ class EditFormHandler {
                 actionName + "_topLeftY",
                 cursorY
               );
-            } else if (setRadioButtonChecked.id == "set_" + actionName + "_bottomRight") {
+            } else if (
+              setRadioButtonChecked.id ==
+              "set_" + actionName + "_bottomRight"
+            ) {
               DOMUtils.setHTMLInputElementValue(
                 actionName + "_bottomRightX",
                 cursorX
@@ -494,7 +492,10 @@ class EditFormHandler {
                 actionName + "_topLeftY",
                 cursorY
               );
-            } else if (setRadioButtonChecked.id == "set_" + actionName + "_bottomRight") {
+            } else if (
+              setRadioButtonChecked.id ==
+              "set_" + actionName + "_bottomRight"
+            ) {
               DOMUtils.setHTMLInputElementValue(
                 actionName + "_bottomRightX",
                 cursorX
@@ -517,7 +518,10 @@ class EditFormHandler {
                 actionName + "_topLeftY",
                 cursorY
               );
-            } else if (setRadioButtonChecked.id == "set_" + actionName + "_bottomRight") {
+            } else if (
+              setRadioButtonChecked.id ==
+              "set_" + actionName + "_bottomRight"
+            ) {
               DOMUtils.setHTMLInputElementValue(
                 actionName + "_bottomRightX",
                 cursorX
@@ -545,8 +549,7 @@ class EditFormHandler {
         const element = document.createElement("span");
         element.setAttribute("id", "subtitle_" + i);
         element.innerText =
-          sortedRegions[i].data.action.options.text.replace("\n", " ") +
-          " ";
+          sortedRegions[i].data.action.options.text.replace("\n", " ") + " ";
         transcriptDiv.appendChild(element);
       }
     }

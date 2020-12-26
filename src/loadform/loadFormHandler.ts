@@ -43,7 +43,9 @@ class LoadFormHandler implements LoadHandler {
         const fReader = new FileReader();
         fReader.readAsDataURL(actionsInput.files[0]);
         fReader.onloadend = () => {
-          FileUtils.localFileContentsToString("./assets/actions_json_schema.json").then(schema => {
+          FileUtils.localFileContentsToString(
+            "./assets/actions_json_schema.json"
+          ).then((schema) => {
             const data = JSON.parse(
               decodeURIComponent(
                 escape(atob((fReader.result as string).split(",")[1]))
@@ -56,10 +58,12 @@ class LoadFormHandler implements LoadHandler {
               .addSchema(jsonSchema, "schema")
               .validate("schema", data);
             if (!validJson) {
-              throw new LoadingError("Invalid JSON : " + JSON.stringify(ajv.errors, null, 2));
+              throw new LoadingError(
+                "Invalid JSON : " + JSON.stringify(ajv.errors, null, 2)
+              );
             }
             resolve(data);
-          })
+          });
         };
       } else {
         resolve(JSON.parse("[]"));
