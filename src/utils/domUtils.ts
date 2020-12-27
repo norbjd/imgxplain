@@ -102,9 +102,15 @@ class DOMUtils {
     return document.querySelector("[data-action='zoom']");
   }
 
-  static getExportButton(): HTMLButtonElement {
+  static getExportActionsToJsonButton(): HTMLButtonElement {
     return document.querySelector(
       "[data-action='export']"
+    ) as HTMLButtonElement;
+  }
+
+  static getExportToVideoButton(): HTMLButtonElement {
+    return document.querySelector(
+      "[data-action='export-video']"
     ) as HTMLButtonElement;
   }
 
