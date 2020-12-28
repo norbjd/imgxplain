@@ -458,10 +458,17 @@ class CustomWaveSurfer {
       this.exportVid(new Blob(chunks, { type: "video/webm" }));
 
     rec.start();
+
+    document.getElementById("content").style.pointerEvents = "none";
+    document.getElementById("wait_until_video_exported").style.display =
+      "block";
     setTimeout(() => {
       rec.stop();
       this.wavesurfer.stop();
       audioCtx.close();
+      document.getElementById("content").style.pointerEvents = "all";
+      document.getElementById("wait_until_video_exported").style.display =
+        "none";
       //}, 3 * 1000);
     }, this.audio.duration * 1000);
   };
