@@ -51,7 +51,7 @@ class CustomWaveSurfer {
       scrollParent: true,
       normalize: true,
       splitChannels: false,
-      backend: "MediaElement",
+      backend: "MediaElementWebAudio",
       plugins: [
         RegionsPlugin.create(),
         MinimapPlugin.create({
