@@ -32,6 +32,8 @@ class CustomWaveSurfer {
 
   currentActions: Action<ActionOptions>[] = [];
 
+  audio: HTMLAudioElement;
+
   constructor(
     audioBlob: Blob,
     jsonActions: string,
@@ -49,7 +51,7 @@ class CustomWaveSurfer {
       scrollParent: true,
       normalize: true,
       splitChannels: false,
-      backend: "MediaElement",
+      backend: "MediaElementWebAudio",
       plugins: [
         RegionsPlugin.create(),
         MinimapPlugin.create({
@@ -64,9 +66,9 @@ class CustomWaveSurfer {
       console.warn(e);
     });
 
-    const audio = new Audio();
-    audio.src = URL.createObjectURL(audioBlob);
-    this.wavesurfer.load(audio);
+    this.audio = new Audio();
+    this.audio.src = URL.createObjectURL(audioBlob);
+    this.wavesurfer.load(this.audio);
 
     this.wavesurfer.on("ready", () => {
       this.wavesurfer.enableDragSelection({
@@ -80,7 +82,8 @@ class CustomWaveSurfer {
     });
 
     this.initPlayButton();
-    this.initExportButton();
+    this.initExportActionsToJsonButton();
+    this.initExportToVideoButton();
     this.initTranscriptButton();
 
     this.editFormHandler.editForm
@@ -371,8 +374,8 @@ class CustomWaveSurfer {
     });
   }
 
-  initExportButton(): void {
-    DOMUtils.getExportButton().addEventListener("click", () => {
+  initExportActionsToJsonButton(): void {
+    DOMUtils.getExportActionsToJsonButton().addEventListener("click", () => {
       FileUtils.localFileContentsToString(
         "./assets/actions_json_schema.json"
       ).then((schema) => {
@@ -422,6 +425,60 @@ class CustomWaveSurfer {
     });
 
     return errorMessages.join("\n");
+  }
+
+  exportVid = (blob) => {
+    const a = document.createElement("a");
+    a.download = "export.webm";
+    a.href = URL.createObjectURL(blob);
+    a.textContent = "download the video";
+    a.click();
+    window.URL.revokeObjectURL(a.href);
+  };
+
+  startRecording = () => {
+    // @ts-ignore
+    const canvasStream: MediaStream = this.canvas.mainCanvas.captureStream();
+
+    const audioCtx = new AudioContext();
+    const dest = audioCtx.createMediaStreamDestination();
+    const audioStream = dest.stream;
+    audioCtx.createMediaElementSource(this.audio).connect(dest);
+
+    const stream = new MediaStream([
+      canvasStream.getVideoTracks()[0],
+      audioStream.getAudioTracks()[0],
+    ]);
+
+    const chunks = [];
+    // @ts-ignore
+    const rec = new MediaRecorder(stream);
+    rec.ondataavailable = (e) => chunks.push(e.data);
+    rec.onstop = (e) =>
+      this.exportVid(new Blob(chunks, { type: "video/webm" }));
+
+    rec.start();
+
+    document.getElementById("content").style.pointerEvents = "none";
+    document.getElementById("wait_until_video_exported").style.display =
+      "block";
+    setTimeout(() => {
+      rec.stop();
+      this.wavesurfer.stop();
+      audioCtx.close();
+      document.getElementById("content").style.pointerEvents = "all";
+      document.getElementById("wait_until_video_exported").style.display =
+        "none";
+      //}, 3 * 1000);
+    }, this.audio.duration * 1000);
+  };
+
+  initExportToVideoButton(): void {
+    DOMUtils.getExportToVideoButton().addEventListener("click", () => {
+      this.wavesurfer.seekTo(0);
+      this.wavesurfer.play();
+      this.startRecording();
+    });
   }
 
   getRegionsIdSorted(): string[] {
