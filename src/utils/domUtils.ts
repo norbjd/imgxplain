@@ -114,6 +114,12 @@ class DOMUtils {
     ) as HTMLButtonElement;
   }
 
+  static getExportSubtitlesButton(): HTMLButtonElement {
+    return document.querySelector(
+      "[data-action='export-subtitles']"
+    ) as HTMLButtonElement;
+  }
+
   static getToggleEditorButton(): HTMLButtonElement {
     return document.getElementById("toggle_editor_button") as HTMLButtonElement;
   }
