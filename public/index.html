@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="css/loadmodaldialog.css">
     <link rel="stylesheet" href="css/customwavesurfer.css">
     <link rel="stylesheet" href="css/editformhandler.css">
-    <link rel="stylesheet" href="css/style_tailwind.css">
+    <!-- <link rel="stylesheet" href="css/style_tailwind.css"> -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
     <script src="dist/bundle.js"></script>
 </head>
@@ -21,7 +22,7 @@
         <div>
             <h2>IMGXPLAIN</h2>
             <form role="form" name="load">
-                <div>
+                <div class="relative">
                     Choose image to describe (PNG, JPG)<span style="color: red">*</span><br>
                     <input type="file" id="image_picker" name="image" accept="image/png, image/jpeg, image/bmp"><br>
                     Choose audio file describing the image<span style="color: red">*</span><br>
@@ -29,7 +30,9 @@
                     Choose JSON file representing actions<br>
                     <input type="file" id="actions_file_picker" name="actions" accept="application/json"><br>
                     <span style="color: red">*</span> required<br><br>
-                    <button type="button" id="load_ok" name="load_ok">OK</button>
+                    <div>
+                      <button type="button" id="load_ok" name="load_ok" class="px-5 rounded text-white bg-blue-500">OK</button>
+                    </div>
                     <p id="loading_text"></p>
                 </div>
             </form>
@@ -46,9 +49,9 @@
     <div>
         <div id="main">
             <div id="menu">
-                <button id="toggle_editor_button">🖉 OPEN EDITOR</button>
-                <button id="play" data-action="play">▶️ PLAY</button>
-                <button id="transcript_button" class="ml-2 p-2 rounded text-white bg-blue-500">📝 TRANSCRIPT</button>
+                <button class="px-5 m-3 rounded text-white bg-blue-500" id="toggle_editor_button">🖉 OPEN EDITOR</button>
+                <button class="px-5 m-3 rounded text-white bg-blue-500" id="play" data-action="play">▶️ PLAY</button>
+                <button class="px-5 m-3 rounded text-white bg-blue-500" id="transcript_button" class="ml-2 p-2 rounded text-white bg-blue-500">📝 TRANSCRIPT</button>
                 <input type="image" id="cc" src="assets/images/nocc.png" />
             </div>
             <div id="transcript" style="background-color: whitesmoke; height: 0px; overflow-y: scroll"></div>

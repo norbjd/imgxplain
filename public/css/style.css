@@ -52,14 +52,6 @@ button {
   vertical-align: top;
 }
 
-#toggle_editor_button {
-  background-color: black;
-}
-
-#play {
-  background-color: #009e47;
-}
-
 #editor {
   height: 100%;
   width: 0;
