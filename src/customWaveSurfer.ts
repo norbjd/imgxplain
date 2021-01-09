@@ -492,27 +492,40 @@ class CustomWaveSurfer {
         const seconds = Math.floor(time % 60);
         const milliseconds = time % 1;
 
-        return String("0" + hours).slice(-2)
-              + ":" + String("0" + minutes).slice(-2) 
-              + ":" + String("0" + seconds).slice(-2)
-              + "." + milliseconds.toFixed(3).slice(-3);
+        return (
+          String("0" + hours).slice(-2) +
+          ":" +
+          String("0" + minutes).slice(-2) +
+          ":" +
+          String("0" + seconds).slice(-2) +
+          "." +
+          milliseconds.toFixed(3).slice(-3)
+        );
       }
 
       for (let i = 0; i < this.sortedRegions.length; i++) {
         const region = this.sortedRegions[i];
         const regionAction = region.data.action;
         if (regionAction != undefined && regionAction.type == "subtitle") {
-          webVtt += timeToVttTime(region.start) + " --> " + timeToVttTime(region.end) 
-            + " line:" + regionAction.options.position + "%" + "\n";
+          webVtt +=
+            timeToVttTime(region.start) +
+            " --> " +
+            timeToVttTime(region.end) +
+            " line:" +
+            regionAction.options.position +
+            "%" +
+            "\n";
           webVtt += regionAction.options.text + "\n\n";
         }
       }
 
       const a = document.createElement("a");
       a.download = "subtitles.vtt";
-      a.href = URL.createObjectURL(new Blob([webVtt], {
-        type: 'text/plain'
-      }));
+      a.href = URL.createObjectURL(
+        new Blob([webVtt], {
+          type: "text/plain",
+        })
+      );
       a.click();
       window.URL.revokeObjectURL(a.href);
     });
