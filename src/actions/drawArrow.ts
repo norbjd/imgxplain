@@ -82,6 +82,7 @@ class DrawArrow extends Action<DrawArrowOptions> {
     );
     context.closePath();
 
+    context.fillStyle = this.options.color;
     context.fill();
 
     context.restore();
