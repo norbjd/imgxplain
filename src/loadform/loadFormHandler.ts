@@ -3,6 +3,7 @@ import { LoadForm } from "./loadForm";
 import { LoadInput } from "./loadInput";
 import { LoadingError } from "./loadingError";
 import { FileUtils } from "../utils/fileUtils";
+import Ajv from "ajv";
 
 class LoadFormHandler implements LoadHandler {
   loadForm: LoadForm;
@@ -51,7 +52,6 @@ class LoadFormHandler implements LoadHandler {
                 escape(atob((fReader.result as string).split(",")[1]))
               )
             );
-            // @ts-ignore
             const ajv = new Ajv();
             const jsonSchema = JSON.parse(schema);
             const validJson = ajv
